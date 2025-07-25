@@ -13,9 +13,6 @@
       --text: #333;
       --muted: #555;
     }
-    html, body {
-      height: 100%;
-    }
     body {
       margin: 0;
       padding: 0;
@@ -26,7 +23,7 @@
     h1 {
       color: var(--primary);
       text-align: center;
-      margin: 20px 0;
+      margin:  20px 0;
       font-size: 1.8rem;
     }
     .container {
@@ -49,7 +46,6 @@
       border-radius: 4px;
       overflow: hidden;
       margin-bottom: 20px;
-      background: #fff;
     }
     .map-container h2 {
       margin: 0;
@@ -58,21 +54,10 @@
       color: white;
       font-size: 1rem;
     }
-    .map-container .map-actions {
-      padding: 8px 10px 0 10px;
-      font-size: 0.9rem;
-    }
-    .map-container .map-actions a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: bold;
-    }
     .map-container iframe {
       width: 100%;
       height: 400px;
       border: 0;
-      pointer-events: auto;
-      display: block;
     }
     form > div {
       margin-bottom: 15px;
@@ -118,8 +103,6 @@
       color: var(--muted);
       font-size: 0.875rem;
     }
-
-    /* --- Mobile fixes --- */
     @media (max-width: 767px) {
       .container {
         flex-direction: column;
@@ -127,10 +110,7 @@
         gap: 10px;
       }
       h1 { font-size: 1.5rem; margin: 10px 0; }
-      .map-container iframe {
-        height: 85vh;
-        min-height: 500px;
-      }
+      .map-container iframe { height: 250px; }
       .map-container h2 { font-size: 0.9rem; padding: 8px; }
       label { font-size: 0.9rem; }
       select, input { font-size: 0.95rem; padding: 8px; }
@@ -148,34 +128,17 @@
     <div class="maps">
       <div class="map-container">
         <h2>SB 535 Disadvantaged Communities Map</h2>
-        <div class="map-actions">
-          <a href="https://experience.arcgis.com/experience/1c21c53da8de48f1b946f3402fbae55c/page/SB-535-Disadvantaged-Communities/" target="_blank" rel="noopener">🔎 Open full screen (best on mobile)</a>
-        </div>
-        <iframe
-          src="https://experience.arcgis.com/experience/1c21c53da8de48f1b946f3402fbae55c/page/SB-535-Disadvantaged-Communities/"
-          title="DAC Map"
-          allowfullscreen
-        ></iframe>
+        <iframe src="https://experience.arcgis.com/experience/1c21c53da8de48f1b946f3402fbae55c/page/SB-535-Disadvantaged-Communities/" title="DAC Map"></iframe>
       </div>
       <div class="map-container">
         <h2>Community Air Protection (CAP UC) Map</h2>
-        <div class="map-actions">
-          <a href="https://capuc.maps.arcgis.com/apps/webappviewer/index.html?id=5bdb921d747a46929d9f00dbdb6d0fa2" target="_blank" rel="noopener">🔎 Open full screen (best on mobile)</a>
-        </div>
-        <iframe
-          src="https://capuc.maps.arcgis.com/apps/webappviewer/index.html?id=5bdb921d747a46929d9f00dbdb6d0fa2"
-          title="CAP UC Map"
-          allowfullscreen
-        ></iframe>
+        <iframe src="https://capuc.maps.arcgis.com/apps/webappviewer/index.html?id=5bdb921d747a46929d9f00dbdb6d0fa2" title="CAP UC Map"></iframe>
       </div>
       <div class="map-container">
         <h2>SCE Shutoff (Outage Status) Tool</h2>
-        <p style="padding:10px;">
-          <a href="https://www.sce.com/outages-safety/outage-center/check-outage-status" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:bold;">🔗 Check Public Safety Shutoff Status</a>
-        </p>
+        <p style="padding:10px;"><a href="https://www.sce.com/outages-safety/outage-center/check-outage-status" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:bold;">🔗 Check Public Safety Shutoff Status</a></p>
       </div>
     </div>
-
     <div class="calculator">
       <form id="calcForm">
         <div>
@@ -219,25 +182,16 @@
           <label for="govAssistance">8. Receiving any government assistance (e.g., SNAP, Medicaid, SSI, etc.)?</label>
           <select id="govAssistance"><option value=""></option><option value="yes">Yes</option><option value="no">No</option></select>
         </div>
-
-        <!-- NEW: Square Footage input -->
         <div>
-          <label for="squareFootage">9. Home Square Footage</label>
-          <input type="number" id="squareFootage" min="0" placeholder="e.g., 2000" />
-          <small>We’ll estimate a PV system size if you leave the PV size blank. Uses 0.0035&nbsp;kW per ft² (≈ 7&nbsp;kW for 2,000&nbsp;ft²). Adjustable in code.</small>
-        </div>
-
-        <div>
-          <label for="capacity">10. Storage Capacity (kWh)</label>
-          <input type="number" id="capacity" min="0" value="30.6" placeholder="Default 30.6 kWh (3 batteries)" />
-          <small>Each project defaults to 3 batteries totaling 30.6&nbsp;kWh.</small>
+          <label for="capacity">9. Storage Capacity (kWh)</label>
+          <input type="number" id="capacity" min="0" placeholder="e.g., 30 for 30 kWh" />
         </div>
         <div>
-          <label for="solarCapacity">11. Solar PV Capacity (kW)</label>
-          <input type="number" id="solarCapacity" min="0" step="0.1" placeholder="Leave blank to auto-estimate from square footage" />
+          <label for="solarCapacity">10. Solar PV Capacity (kW)</label>
+          <input type="number" id="solarCapacity" min="0" step="0.1" placeholder="e.g., 5 for 5 kW" />
         </div>
         <div>
-          <label for="backup">12. Backup Capability?</label>
+          <label for="backup">11. Backup Capability?</label>
           <select id="backup"><option value=""></option><option value="yes">Yes</option><option value="no">No</option></select>
         </div>
         <div>
@@ -253,9 +207,6 @@
         const smallResRate = 0.15;
         const largeScaleRate = 0.25;
 
-        // Rule of thumb for estimating PV system size from square footage
-        const KW_PER_SQFT = 0.0035; // 0.0035 kW per ft² (≈ 3.5 W/ft²)
-
         document.getElementById('btnCheck').addEventListener('click', () => {
           const cust = document.getElementById('customerType').value;
           const inFire = document.getElementById('inFire').value === 'yes';
@@ -264,22 +215,8 @@
           const singlePath = document.getElementById('singleEquity').value;
           const careSelected = document.getElementById('care').value === 'yes';
           const govAssist = document.getElementById('govAssistance').value === 'yes';
-          const squareFootage = parseFloat(document.getElementById('squareFootage').value) || 0;
-
-          const capacityInput = document.getElementById('capacity');
-          const solarCapacityInput = document.getElementById('solarCapacity');
-
-          let capacity = parseFloat(capacityInput.value);
-          if (isNaN(capacity) || capacity <= 0) capacity = 30.6; // default to 3 batteries
-
-          let solarCap = parseFloat(solarCapacityInput.value) || 0;
-          let autoPvKwUsed = null;
-
-          // Auto estimate PV size if not provided but square footage is present
-          if (!solarCap && squareFootage > 0) {
-            autoPvKwUsed = Math.max(1, (squareFootage * KW_PER_SQFT)); // minimum 1 kW
-            solarCap = parseFloat(autoPvKwUsed.toFixed(1));
-          }
+          const capacity = parseFloat(document.getElementById('capacity').value) || 0;
+          const solarCap = parseFloat(document.getElementById('solarCapacity').value) || 0;
 
           let rate = 0, budget = '';
 
@@ -302,20 +239,12 @@
           const totalIncentive = storageIncentive + solarIncentive;
 
           let explanation = `You qualify under the **${budget}** category at a rate of $${rate.toFixed(2)}/Wh, resulting in $${storageIncentive.toLocaleString()} for ${capacity.toLocaleString()} kWh of storage. `;
-
-          if (solarCap > 0) {
+          if (solarCap > 0)
             explanation += `Additionally, ${solarCap.toLocaleString()} kW of solar PV earns $${solarIncentive.toLocaleString()} at $${solarRate}/kW. `;
-          }
-
-          if (autoPvKwUsed !== null) {
-            explanation += `Based on ${squareFootage.toLocaleString()} ft², we estimated a typical PV system size of ~${solarCap.toLocaleString()} kW (using ${KW_PER_SQFT * 1000} W/ft²). `;
-          }
-
           if (careSelected)
             explanation += `As a CARE participant, you save 20% on your electric bill. `;
           if (govAssist)
             explanation += `Because you indicated you're receiving government assistance, you may qualify for CARE automatically. `;
-
           explanation += `Total SGIP incentives: $${totalIncentive.toLocaleString()}.`;
 
           const res = document.getElementById('result');
@@ -327,4 +256,4 @@
   </div>
 </body>
 </html>
-// Express server scraping selfgenca.com program metrics
+
